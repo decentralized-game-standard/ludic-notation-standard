@@ -2,6 +2,10 @@
 
 **A Declarative Framework for Composable Game Rulesets — Conceptual Exploration, 2026-01-14**
 
+🏠 **[Overview](https://github.com/decentralized-game-standard)** · 📦 **[AEMS](https://github.com/decentralized-game-standard/aems-standard)** · 🔧 **[GERS](https://github.com/decentralized-game-standard/gers-standard)** · ⚡ **[WOSS](https://github.com/decentralized-game-standard/woss-standard)** · ❓ **[FAQ](https://github.com/decentralized-game-standard/.github/blob/main/profile/FAQ.md)**
+
+---
+
 Games are defined by their rules. A core loop, win conditions, resource flows, player actions—these are the essence that makes chess chess, soccer soccer, or a MOBA a MOBA. Yet in digital games, rules are almost always embedded directly in code: hard-wired into monolithic engines, scattered across scripts, or tightly coupled to proprietary systems. This locks rulesets to specific implementations, making true portability, remixing, and longevity difficult.
 
 Ludic Structures proposes a different approach: declarative, composable descriptions of game mechanics that stand independent of any engine or codebase. Inspired by petri nets and atomic "ludemes" (fundamental units of gameplay), it treats rules as explicit, hierarchical compositions of simple primitives. A ruleset becomes a portable "rulebook"—readable, versionable, forkable—that any compatible engine can interpret in its own way.
