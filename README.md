@@ -1,6 +1,6 @@
 # Ludic Structures
 
-**A Declarative Framework for Composable Game Rulesets — Conceptual Exploration, Version 0.1 — January 2026**
+**A Declarative Framework for Composable Game Rulesets — Conceptual Exploration, 2026-01-14**
 
 Games are defined by their rules. A core loop, win conditions, resource flows, player actions—these are the essence that makes chess chess, soccer soccer, or a MOBA a MOBA. Yet in digital games, rules are almost always embedded directly in code: hard-wired into monolithic engines, scattered across scripts, or tightly coupled to proprietary systems. This locks rulesets to specific implementations, making true portability, remixing, and longevity difficult.
 
