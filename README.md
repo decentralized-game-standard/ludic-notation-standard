@@ -96,6 +96,20 @@ modifications:
 
 The "open door" mechanic in Ocarina of Time and Majora's Mask is identical—the same Pattern. Half-Life: Alyx has a more complex door-opening Pattern. Both reference the same conceptual atom but extend it differently.
 
+## What Ludic Structures Deliberately Excludes
+
+Ludic Structures is notation, not execution. Like musical staff notation captures pitch without producing sound, this formalism captures mechanics without simulating them:
+
+| Excluded | Why | Where It Belongs |
+|----------|-----|------------------|
+| **Execution semantics** | Notation describes, not runs | GERS Processors, game engines |
+| **Visual representation** | Structure is abstract, not rendered | Client implementations, design tools |
+| **Balancing/tuning** | Notation captures potential, not feel | Playtesting, iteration |
+| **AI/opponent modeling** | Notation captures rules, not strategy | Game implementations |
+| **Temporal precision** | Notation captures sequence, not timing | Runtime systems |
+
+A Ludic Structure is a readable artifact—like a chess rulebook or a musical score. What you do with it is your domain.
+
 ---
 
 ## Schema vs. Instance
