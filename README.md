@@ -2,7 +2,7 @@
 
 **A Compositional Notation for Interactive Rule Systems — Conceptual Exploration, 2026-01-16**
 
-🏠 **[Overview](https://github.com/decentralized-game-standard)** · 📦 **[AEMS](https://github.com/decentralized-game-standard/aems-standard)** · 🔧 **[GERS](https://github.com/decentralized-game-standard/gers-standard)** · ⚡ **[WOSS](https://github.com/decentralized-game-standard/woss-standard)** · ❓ **[FAQ](https://github.com/decentralized-game-standard/.github/blob/main/profile/FAQ.md)**
+🏠 **[Overview](https://github.com/decentralized-game-standard)** · 📦 **[AEMS](https://github.com/decentralized-game-standard/aems-standard)** · 🔧 **[RUNS](https://github.com/decentralized-game-standard/runs-standard)** · ⚡ **[WOCS](https://github.com/decentralized-game-standard/wocs-standard)** · ❓ **[FAQ](https://github.com/decentralized-game-standard/.github/blob/main/profile/FAQ.md)**
 
 ---
 
@@ -102,7 +102,7 @@ Ludic Structures is notation, not execution. Like musical staff notation capture
 
 | Excluded | Why | Where It Belongs |
 |----------|-----|------------------|
-| **Execution semantics** | Notation describes, not runs | GERS Processors, game engines |
+| **Execution semantics** | Notation describes, not runs | RUNS Processors, game engines |
 | **Visual representation** | Structure is abstract, not rendered | Client implementations, design tools |
 | **Balancing/tuning** | Notation captures potential, not feel | Playtesting, iteration |
 | **AI/opponent modeling** | Notation captures rules, not strategy | Game implementations |
@@ -208,7 +208,7 @@ If a game's Ludic Structure is published, the rules survive engine death. Future
 
 This complements:
 - **AEMS**: Entities persist (the sword exists)
-- **GERS**: Engines compose (the renderer changes)
+- **RUNS**: Engines compose (the renderer changes)
 - **Ludic Structures**: Rules endure (the combat system is documented)
 
 ---
@@ -218,10 +218,10 @@ This complements:
 | Protocol | What it captures | Ludic Structures relationship |
 |----------|------------------|-------------------------------|
 | **AEMS** | What entities *are* | Entities flow through Ludic Structures as Marks |
-| **GERS** | How engines *execute* | Processors implement Ludic Structure Verbs |
-| **WOSS** | How coordination *flows* | Funds creation and curation of Patterns |
+| **RUNS** | How engines *execute* | Processors implement Ludic Structure Verbs |
+| **WOCS** | How coordination *flows* | Funds creation and curation of Patterns |
 
-A community publishes a "MOBA" Score as a Ludic Structure. AEMS defines the heroes and items as Entities. GERS engines implement the Verbs. WOSS bounties fund new Patterns. Different clients interpret the same structure—minimalist for pickup games, polished for tournaments.
+A community publishes a "MOBA" Score as a Ludic Structure. AEMS defines the heroes and items as Entities. RUNS engines implement the Verbs. WOCS bounties fund new Patterns. Different clients interpret the same structure—minimalist for pickup games, polished for tournaments.
 
 ---
 
@@ -248,7 +248,7 @@ This is early-stage formalism—deliberately minimal and uncommitted. The primit
 - Hidden information (per-agent visibility masks)
 - Visual notation conventions
 
-The focus is enabling open rulebooks as cultural artifacts, complementing AEMS (entities), GERS (engines), and WOSS (coordination). Experiment. Diagram a favorite game. See what breaks.
+The focus is enabling open rulebooks as cultural artifacts, complementing AEMS (entities), RUNS (engines), and WOCS (coordination). Experiment. Diagram a favorite game. See what breaks.
 
 ---
 
