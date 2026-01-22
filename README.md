@@ -40,8 +40,8 @@ These four primitives form the atomic units of any interactive structure.
 |-----------|--------------------------------------|-----------------------------------------------------|------------------------------------|
 | **State** | Observable condition or situation    | ID, description, visibility rules                   | The "nouns" of position in play   |
 | **Verb**  | Available action or affordance       | ID, preconditions (Arcs in), effects (Arcs out)      | The bridge from observation to agency |
-| **Arc**   | Directed transition or requirement   | Source → Target, conditions (min Marks), effects (consume/produce Marks) | The "rules" governing flow        |
-| **Mark**  | Token or quantifiable resource       | Type, quantity                                      | Tracks progress, inventory, score |
+| **Arc**   | Directed transition or requirement   | Source → Target, min Marks, guard expressions, consume/produce Marks | The "rules" governing flow        |
+| **Mark**  | Token or quantifiable resource       | Type, quantity (numeric or structured)              | Tracks progress, inventory, score |
 
 ### Detailed Definitions
 
@@ -51,14 +51,16 @@ These four primitives form the atomic units of any interactive structure.
 
 **Verb**  
 - Represents an action the agent can attempt (e.g., "open", "attack").  
-- Exists only when reachable via Arcs from current States.
+- Enabled when all precondition Arcs are satisfied (including any guards). Multiple enabled Verbs preserve interactive choice.
 
 **Arc**  
 - The directional link defining legality and consequences.  
-- May require/consume Marks (e.g., "needs key") or produce them (e.g., "gain points").
+- May require a minimum quantity of Marks, include a **guard** (boolean expression evaluated over current Marks, e.g., `strength >= 5` or `inventory.keys >= 1`), and consume/produce Marks.  
+- Guards enable compact representation of ranged conditions without state explosion, while remaining decomposable to pure Petri-net forms.
 
 **Mark**  
-- Simple counters or tokens placed on States (e.g., health=3, ammo=10).
+- Quantifiable resources or tokens placed on States (e.g., `health=3`, `ammo=10`, `strength=7`).  
+- Marks support numeric values and accessor syntax in guards (e.g., `inventory.bombs >= 1`), allowing future extension to structured data without changing primitives.
 
 ## Composition Hierarchy
 
@@ -87,12 +89,42 @@ This separation prevents conflating rules with specific playthroughs.
 
 Implementers **SHOULD** adhere exactly to primitives and composition rules for interoperability. Tools can validate Scores, generate diagrams, or export to RUNS Networks.
 
-Example minimal Score (YAML sketch):
+**Guards in Practice**  
+Guards are evaluated at enablement time using current Marks. Supported operations include comparisons (`>=`, `==`, etc.), arithmetic, and logical connectors. This keeps the notation compact for gradients (health ranges, inventory counts) while preserving non-deterministic choice when multiple Verbs are enabled.
+
+Example minimal Score (YAML sketch) showing arc-level guards:
 ```yaml
 version: 1.0
 imports:
   - ludic:open-door@1.0
-extends:
+
+states:
+  - id: near_door
+  - id: door_open
+
+marks:
+  - type: strength
+    default: 3
+  - type: inventory.keys
+    default: 0
+
+verbs:
+  - id: open_door
+    preconditions:
+      - arc:
+          source: near_door
+          # Simplified effect for demo
+    effects:
+      - arc:
+          target: door_open
+
+  - id: kick_door
+    preconditions:
+      - arc:
+          source: near_door
+          guard: strength >= 5
+
+extends:  # Shorthand form (equivalent to adding a guarded precondition arc)
   open-door:
     add_verb: kick
     precondition: strength >= 5
