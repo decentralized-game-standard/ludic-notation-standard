@@ -148,7 +148,7 @@ These exclusions ensure the notation remains a true abstract grammar rather than
 |-------------------------|----------------------------------------------|---------------------------------------------|
 | **AEMS**                | Autonomous entities and assets               | Manifestations provide the "nouns" (e.g., keyed doors) |
 | **RUNS**                | Execution and data flow                      | Scores export to Networks of Records/Processors |
-| **WOCS**                | Coordination and ecosystem                   | Registry for Patterns/Scores, bounties for pairings |
+| **WOCS**                | Coordination and ecosystem                   | Registry for Patterns/Scores, services for pairings |
 | **Ludic Structures**    | Notation for mechanics                       | The shared rulebook layer                    |
 
 A Score becomes executable when paired with RUNS implementations of its Patterns.
