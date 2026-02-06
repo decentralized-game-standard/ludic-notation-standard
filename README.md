@@ -136,7 +136,7 @@ extends:  # Shorthand form (equivalent to adding a guarded precondition arc)
 |-------------------------|----------------------------------------------|--------------------------------------|
 | Timing / real-time flow | Varies by genre (turn-based vs. continuous)  | RUNS execution / runtime             |
 | Probability & RNG       | Implementation detail                        | Specific Processors                  |
-| Visuals / audio         | Presentation layer                           | AEMS assets / rendering Processors   |
+| Visuals / audio         | Presentation layer                           | AEMS Manifestations define; RUNS Processors render |
 | Hidden implementation   | Notation must be complete and transparent    | Forbidden                            |
 | Platform specifics      | Keeps rules neutral                          | Runtime bindings                     |
 
