@@ -1,4 +1,4 @@
-# Ludic Structures: Research Notes
+# MAPS: Research Notes
 
 **Working document for vocabulary and formalism development — 2026-01-16**
 
@@ -22,7 +22,7 @@ This maps directly to Chris Crawford's conversation model for interactivity and 
 
 ## The Primitives
 
-Ludic Structures uses four primitives derived from Petri nets, reframed for game design:
+MAPS uses four primitives derived from Petri nets, reframed for game design:
 
 | Primitive | Definition | Conversation Analog |
 |-----------|------------|---------------------|
@@ -51,7 +51,7 @@ A Mark indicates current presence at a State. Multiple Marks may occupy a State 
 
 ## Schema vs. Instance
 
-Ludic Structures operate at two distinct levels:
+MAPS operates at two distinct levels:
 
 | Level | What it defines | Reusability |
 |-------|-----------------|-------------|
