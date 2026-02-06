@@ -1,4 +1,4 @@
-# MAPS: Mechanics And Play Structures
+# MAPS Notation
 
 🏠 **[Overview](https://github.com/decentralized-game-standard)** · 🔧 **[RUNS](https://github.com/decentralized-game-standard/runs-standard)** · 📦 **[AEMS](https://github.com/decentralized-game-standard/aems-standard)** · ⚡ **[WOCS](https://github.com/decentralized-game-standard/wocs-standard)** · 🎭 **[MAPS](https://github.com/decentralized-game-standard/ludic-notation-standard)** · ❓ **[FAQ](https://github.com/decentralized-game-standard/.github/blob/main/profile/FAQ.md)**
 
@@ -9,9 +9,9 @@
 
 Games are structured conversations between agent and world.
 
-The **MAPS Standard** (Mechanics And Play Structures) provides a neutral, implementation-agnostic notation for describing these conversations—the core mechanics and rules of interactive systems. While RUNS defines *how* a game executes each frame through data flow, and AEMS defines *what* entities participate, MAPS defines the underlying *grammar*: the states, actions, transitions, and resources that shape meaningful play.
+The **MAPS notation** (Mechanics And Play Structures) provides a neutral, implementation-agnostic notation for describing these conversations—the core mechanics and rules of interactive systems. While RUNS defines *how* a game executes each frame through data flow, and AEMS defines *what* entities participate, MAPS defines the underlying *grammar*: the states, actions, transitions, and resources that shape meaningful play.
 
-Without a shared notation, mechanics remain embedded in proprietary code—fragile, unpreservable, and locked to one implementation. This standard breaks that pattern by treating rules as portable, analyzable artifacts: open rulebooks that can outlive any single engine or company.
+Without a shared notation, mechanics remain embedded in proprietary code—fragile, unpreservable, and locked to one implementation. This notation breaks that pattern by treating rules as portable, analyzable artifacts: open rulebooks that can outlive any single engine or company.
 
 Think of it as sheet music for gameplay: sufficient to convey the interactive structure clearly, leaving performance (execution, visuals, timing) to specialized interpreters.
 
