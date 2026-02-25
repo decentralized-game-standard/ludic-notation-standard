@@ -1,4 +1,4 @@
-# Ludic Structures: Research Notes
+# MAPS Notation: Research Notes
 
 **Working document for vocabulary and formalism development — 2026-01-16**
 
@@ -22,7 +22,7 @@ This maps directly to Chris Crawford's conversation model for interactivity and 
 
 ## The Primitives
 
-Ludic Structures uses four primitives derived from Petri nets, reframed for game design:
+MAPS Notation uses four primitives derived from Petri nets, reframed for game design:
 
 | Primitive | Definition | Conversation Analog |
 |-----------|------------|---------------------|
@@ -51,7 +51,7 @@ A Mark indicates current presence at a State. Multiple Marks may occupy a State 
 
 ## Schema vs. Instance
 
-Ludic Structures operate at two distinct levels:
+MAPS Notation operates at two distinct levels:
 
 | Level | What it defines | Reusability |
 |-------|-----------------|-------------|
@@ -114,9 +114,9 @@ Patterns should be importable and extensible, like dependency packages:
 ```yaml
 # Example: A game importing ludic patterns
 dependencies:
-  - ludic:open-door@1.0
-  - ludic:combat-melee@2.1
-  - ludic:inventory-grid@1.3
+  - maps:open-door@1.0
+  - maps:combat-melee@2.1
+  - maps:inventory-grid@1.3
 ```
 
 ### Extension and Variation
@@ -125,7 +125,7 @@ Base patterns can be extended for specific needs:
 
 ```yaml
 # Example: Extending a base pattern
-extends: ludic:open-door@1.0
+extends: maps:open-door@1.0
 modifications:
   - auto_walk_through: true    # OoT-style seamless transition
   - animation_lock: 0.5s       # Brief state lockout

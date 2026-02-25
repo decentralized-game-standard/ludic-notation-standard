@@ -1,6 +1,6 @@
-# Ludic Structures ("The Notation")
+# MAPS Notation — Mechanics and Play Structures
 
-🏠 **[Overview](https://github.com/decentralized-game-standard)** · 🔧 **[RUNS](https://github.com/decentralized-game-standard/runs-standard)** · 📦 **[AEMS](https://github.com/decentralized-game-standard/aems-standard)** · ⚡ **[WOCS](https://github.com/decentralized-game-standard/wocs-standard)** · 🎭 **[Ludic Structures](https://github.com/decentralized-game-standard/ludic-notation-standard)** · ❓ **[FAQ](https://github.com/decentralized-game-standard/.github/blob/main/profile/FAQ.md)**
+🏠 **[Overview](https://github.com/enduring-game-standard)** · 🔧 **[RUNS](https://github.com/enduring-game-standard/runs-spec)** · 📦 **[AEMS](https://github.com/enduring-game-standard/aems-schema)** · ⚡ **[WOCS](https://github.com/enduring-game-standard/wocs-protocol)** · 🎭 **[MAPS Notation](https://github.com/enduring-game-standard/maps-notation)** · ❓ **[FAQ](https://github.com/enduring-game-standard/.github/blob/main/profile/FAQ.md)**
 
 > **Status**: Draft / RFC  
 > **Version**: 0.1.0
@@ -9,7 +9,7 @@
 
 Games are structured conversations between agent and world.
 
-The **Ludic Structures Standard** provides a neutral, implementation-agnostic notation for describing these conversations—the core mechanics and rules of interactive systems. While RUNS defines *how* a game executes each frame through data flow, and AEMS defines *what* entities participate, Ludic Structures defines the underlying *grammar*: the states, actions, transitions, and resources that shape meaningful play.
+The **MAPS Notation** provides a neutral, implementation-agnostic notation for describing these conversations—the core mechanics and rules of interactive systems. While RUNS defines *how* a game executes each frame through data flow, and AEMS defines *what* entities participate, MAPS defines the underlying *grammar*: the states, actions, transitions, and resources that shape meaningful play.
 
 Without a shared notation, mechanics remain embedded in proprietary code—fragile, unpreservable, and locked to one implementation. This standard breaks that pattern by treating rules as portable, analyzable artifacts: open rulebooks that can outlive any single engine or company.
 
@@ -23,7 +23,7 @@ Traditional games fuse rules into executable code, making them:
 - **Fragile** — Updates or ports risk altering core feel.
 - **Proprietary** — Genres die when companies abandon them.
 
-Ludic Structures enables:
+MAPS Notation enables:
 
 - **Portable Genres** — Define a MOBA or roguelike once; evolve it community-wide.
 - **Rapid Composition** — Build novel games by remixing proven patterns.
@@ -72,11 +72,11 @@ Primitives combine into higher-level reusable units.
 | **Pattern**| Named, versioned cluster of Atoms/primitives | Reusable mechanic with defined interface            | "Locked Door", "Basic Combat"     |
 | **Score** | Root composition importing Patterns  | Full game ruleset, defining complete Capability/Content split | "Chess Rules v1.0", "Simple Platformer" |
 
-Patterns support extension and forking semantics (e.g., `extends: ludic:open-door@1.0` with modifications).
+Patterns support extension and forking semantics (e.g., `extends: maps:open-door@1.0` with modifications).
 
 ## Schema Separation
 
-Ludic Structures enforces a clean division:
+MAPS Notation enforces a clean division:
 
 - **Capability Schema** — What the agent can do (Verbs and preconditions).
 - **Content Schema**   — What the world affords (States, Arcs, Marks available).
@@ -96,7 +96,7 @@ Example minimal Score (YAML sketch) showing arc-level guards:
 ```yaml
 version: 1.0
 imports:
-  - ludic:open-door@1.0
+  - maps:open-door@1.0
 
 states:
   - id: near_door
@@ -142,20 +142,20 @@ extends:  # Shorthand form (equivalent to adding a guarded precondition arc)
 
 These exclusions ensure the notation remains a true abstract grammar rather than a biased framework.
 
-## Integration with the Decentralized Game Standard
+## Integration with the Enduring Game Standard
 
-| Layer                   | Role                                         | Connection to Ludic Structures               |
+| Layer                   | Role                                         | Connection to MAPS Notation                  |
 |-------------------------|----------------------------------------------|---------------------------------------------|
 | **AEMS**                | Autonomous entities and assets               | Manifestations provide the "nouns" (e.g., keyed doors) |
 | **RUNS**                | Execution and data flow                      | Scores export to Networks of Records/Processors |
 | **WOCS**                | Coordination and ecosystem                   | Registry for Patterns/Scores, services for pairings |
-| **Ludic Structures**    | Notation for mechanics                       | The shared rulebook layer                    |
+| **MAPS Notation**       | Notation for mechanics                       | The shared rulebook layer                    |
 
 A Score becomes executable when paired with RUNS implementations of its Patterns.
 
 ## Summary
 
-Ludic Structures turns fleeting code into enduring rulebooks—open, composable, and preservable.
+MAPS Notation turns fleeting code into enduring rulebooks—open, composable, and preservable.
 
 Shared notation enables vast innovation.
 
