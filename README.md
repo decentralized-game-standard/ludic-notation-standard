@@ -1,102 +1,86 @@
 # MAPS Notation — Mechanics and Play Structures
 
-🏠 **[Overview](https://github.com/enduring-game-standard)** · 🔧 **[RUNS](https://github.com/enduring-game-standard/runs-spec)** · 📦 **[AEMS](https://github.com/enduring-game-standard/aems-schema)** · ⚡ **[WOCS](https://github.com/enduring-game-standard/wocs-protocol)** · 🎭 **[MAPS Notation](https://github.com/enduring-game-standard/maps-notation)** · ❓ **[FAQ](https://github.com/enduring-game-standard/.github/blob/main/profile/FAQ.md)**
+🏠 **[Overview](https://github.com/enduring-game-standard)** · 🔧 **[RUNS](https://github.com/enduring-game-standard/runs-standard)** · 📦 **[AEMS](https://github.com/enduring-game-standard/aems-standard)** · ⚡ **[WOCS](https://github.com/enduring-game-standard/wocs-standard)** · 🎼 **[MAPS Notation](https://github.com/enduring-game-standard/ludic-notation-standard)** · ❓ **[FAQ](https://github.com/enduring-game-standard/.github/blob/main/profile/FAQ.md)**
 
 > **Status**: Draft / RFC  
 > **Version**: 0.1.0
 
 ---
 
-Games are structured conversations between agent and world.
+Games are structured conversations between agent and world. Chris Crawford named the principle in 1984; Raph Koster showed that the conversations teach through their mechanics; Jonathan Blow demonstrated that they can carry philosophical argument. The medium's expressive power has never been in doubt. What has been missing is a way to write the conversation down.
 
-The **MAPS Notation** provides a neutral, implementation-agnostic notation for describing these conversations—the core mechanics and rules of interactive systems. While RUNS defines *how* a game executes each frame through data flow, and AEMS defines *what* entities participate, MAPS defines the underlying *grammar*: the states, actions, transitions, and resources that shape meaningful play.
+Music faced the same problem for centuries. Melodies passed from teacher to student by ear, mutating with each generation, vanishing when lineages broke. Then Guido d'Arezzo placed notes on a staff, and music gained a written form — portable across languages, analyzable by anyone who could read, preservable beyond any single performer's lifetime. Five centuries of cumulative composition followed. The staff did not compose music. It made composition *transmissible*.
 
-Without a shared notation, mechanics remain embedded in proprietary code—fragile, unpreservable, and locked to one implementation. This standard breaks that pattern by treating rules as portable, analyzable artifacts: open rulebooks that can outlive any single engine or company.
+Games today fuse their mechanics into executable code — opaque, fragile, and locked to one implementation. When a studio closes, the rules themselves disappear with the codebase. Genres evolve through imitation rather than study, because there is no way to read a mechanic apart from its rendering. Each generation of designers starts nearly from scratch.
 
-Think of it as sheet music for gameplay: sufficient to convey the interactive structure clearly, leaving performance (execution, visuals, timing) to specialized interpreters.
+The **MAPS Notation** provides a neutral, implementation-agnostic notation for describing game mechanics as open rulebooks. While [RUNS](https://github.com/enduring-game-standard/runs-standard) defines *how* a game executes each frame through data flow, and [AEMS](https://github.com/enduring-game-standard/aems-standard) defines *what* entities participate, MAPS defines the underlying *grammar*: the states, actions, transitions, and resources that shape play.
 
-## Why a Shared Notation?
+Think of it as sheet music for gameplay: sufficient to convey the interactive structure clearly, leaving performance — execution, visuals, timing — to specialized interpreters.
 
-Traditional games fuse rules into executable code, making them:
+## A Converging Lineage
 
-- **Opaque** — Hard to analyze, balance, or teach without playing.
-- **Fragile** — Updates or ports risk altering core feel.
-- **Proprietary** — Genres die when companies abandon them.
+The four primitives described below did not emerge from a single design session. They represent a convergence across decades of independent work on formalizing interactive systems.
 
-MAPS Notation enables:
+Carl Adam Petri introduced Petri nets in 1962 — a mathematical formalism for modeling concurrent, discrete-event systems using places, transitions, and tokens. Stéphane Bura applied Petri-net thinking directly to game design, mapping places to game states and transitions to player actions. Joris Dormans extended this approach into Machinations, a visual language for diagramming and simulating game economies as resource flows between nodes. Cameron Browne's Ludii system, developed under the Digital Ludeme Project at Maastricht University, decomposed over a thousand traditional strategy games into fundamental conceptual units called ludemes — proving that a common grammar could describe games spanning millennia of human history.
 
-- **Portable Genres** — Define a MOBA or roguelike once; evolve it community-wide.
-- **Rapid Composition** — Build novel games by remixing proven patterns.
-- **Preservation** — Mechanics as cultural artifacts, versioned and forkable.
-- **Analysis** — Formal tools for studying emergence, fairness, or accessibility.
-
-This notation is deliberately abstract and minimal: it captures interaction without prescribing real-time flow, probability, rendering, or platform.
+These projects, alongside contributions from Raph Koster, Daniel Cook, and the work surveyed in the book's Chapter 13, point to the same structural insight: interactive systems share a small set of recurring formal elements. MAPS Notation distills that convergence into four primitives — State, Verb, Arc, Mark — designed to be the minimal sufficient vocabulary for describing game mechanics as readable, composable artifacts.
 
 ## Core Primitives
 
 These four primitives form the atomic units of any interactive structure.
 
 | Primitive | Purpose                              | Key Attributes                                      | Notes                              |
-|-----------|--------------------------------------|-----------------------------------------------------|------------------------------------|
-| **State** | Observable condition or situation    | ID, description, visibility rules                   | The "nouns" of position in play   |
+|-----------|--------------------------------------|-----------------------------------------------------|-------------------------------------|
+| **State** | Observable condition or situation    | ID, description, visibility rules                   | The "nouns" of position in play    |
 | **Verb**  | Available action or affordance       | ID, preconditions (Arcs in), effects (Arcs out)      | The bridge from observation to agency |
-| **Arc**   | Directed transition or requirement   | Source → Target, min Marks, guard expressions, consume/produce Marks | The "rules" governing flow        |
-| **Mark**  | Token or quantifiable resource       | Type, quantity (numeric or structured)              | Tracks progress, inventory, score |
+| **Arc**   | Directed transition or requirement   | Source → Target, min Marks, guard expressions, consume/produce Marks | The "rules" governing flow         |
+| **Mark**  | Token or quantifiable resource       | Type, quantity (numeric or structured)              | Tracks progress, inventory, score  |
 
 ### Detailed Definitions
 
 **State**  
-- Represents any distinguishable situation (e.g., "door_locked", "player_alive").  
-- Visibility can mask information for hidden states.
+Represents any distinguishable situation — `door_locked`, `player_alive`, `inventory_full`. A door is either locked or unlocked; a player is either alive or defeated. Visibility rules can mask information for hidden states (fog of war, concealed cards).
 
 **Verb**  
-- Represents an action the agent can attempt (e.g., "open", "attack").  
-- Enabled when all precondition Arcs are satisfied (including any guards). Multiple enabled Verbs preserve interactive choice.
+Represents an action the agent can attempt — `open`, `attack`, `trade`. A Verb is enabled when all precondition Arcs are satisfied, including any guards. When multiple Verbs are simultaneously enabled, the player faces a meaningful choice.
 
 **Arc**  
-- The directional link defining legality and consequences.  
-- May require a minimum quantity of Marks, include a **guard** (boolean expression evaluated over current Marks, e.g., `strength >= 5` or `inventory.keys >= 1`), and consume/produce Marks.  
-- Guards enable compact representation of ranged conditions without state explosion, while remaining decomposable to pure Petri-net forms.
+The directional link defining legality and consequences. An Arc may require a minimum quantity of Marks, include a **guard** (a boolean expression evaluated over current Marks, e.g., `strength >= 5` or `inventory.keys >= 1`), and consume or produce Marks upon firing. Guards enable compact representation of ranged conditions without state explosion, while remaining decomposable to pure Petri-net forms.
 
 **Mark**  
-- Quantifiable resources or tokens placed on States (e.g., `health=3`, `ammo=10`, `strength=7`).  
-- Marks support numeric values and accessor syntax in guards (e.g., `inventory.bombs >= 1`), allowing future extension to structured data without changing primitives.
+Quantifiable resources or tokens placed on States — `health=3`, `ammo=10`, `strength=7`. Marks support numeric values and accessor syntax in guards (e.g., `inventory.bombs >= 1`), allowing future extension to structured data without changing primitives.
 
 ## Composition Hierarchy
 
 Primitives combine into higher-level reusable units.
 
-| Level     | Definition                           | Purpose                                             | Example                            |
-|-----------|--------------------------------------|-----------------------------------------------------|------------------------------------|
-| **Atom**  | Minimal closed interactive loop      | Smallest meaningful unit (often State → Verb → State)| "Press button → receive reward"   |
-| **Pattern**| Named, versioned cluster of Atoms/primitives | Reusable mechanic with defined interface            | "Locked Door", "Basic Combat"     |
-| **Score** | Root composition importing Patterns  | Full game ruleset, defining complete Capability/Content split | "Chess Rules v1.0", "Simple Platformer" |
+| Level      | Definition                           | Purpose                                             | Example                            |
+|------------|--------------------------------------|-----------------------------------------------------|-------------------------------------|
+| **Atom**   | Minimal closed interactive loop      | Smallest meaningful unit (often State → Verb → State)| A lever that opens a gate           |
+| **Pattern**| Named, versioned cluster of Atoms/primitives | Reusable mechanic with defined interface            | `maps:locked-transition` (a keyed door with precondition) |
+| **Score**  | Root composition importing Patterns  | Full game ruleset, defining complete Capability/Content split | A dungeon-crawl ruleset importing locked-transition, resource-acquire, and basic-exchange |
 
-Patterns support extension and forking semantics (e.g., `extends: maps:open-door@1.0` with modifications).
+A designer composes a Score by importing Patterns from the [MAPS Library](https://github.com/enduring-game-standard/ludic-notation-library), the community-maintained vocabulary of reusable mechanics. Patterns support extension and forking: a designer can take `maps:locked-transition@1.0`, add a new Verb (e.g., `kick`), and publish the variant as a new versioned Pattern.
 
 ## Schema Separation
 
 MAPS Notation enforces a clean division:
 
 - **Capability Schema** — What the agent can do (Verbs and preconditions).
-- **Content Schema**   — What the world affords (States, Arcs, Marks available).
-- **Content Instance** — Specific arrangement (e.g., level layout placing Marks).
-- **Play State**       — Runtime-only (current position)—excluded from notation.
+- **Content Schema** — What the world affords (States, Arcs, Marks available).
+- **Content Instance** — Specific arrangement (e.g., a level layout placing Marks on States).
+- **Play State** — Runtime-only (current position) — excluded from notation.
 
-This separation prevents conflating rules with specific playthroughs.
+This separation prevents conflating rules with specific playthroughs. A Score describes a game's mechanics; a Content Instance describes a particular level or scenario; Play State belongs to the runtime. The notation captures the first two. The third is a matter for [RUNS](https://github.com/enduring-game-standard/runs-standard) execution.
 
-## Usage Guidelines
+## Concrete Example
 
-Implementers **SHOULD** adhere exactly to primitives and composition rules for interoperability. Tools can validate Scores, generate diagrams, or export to RUNS Networks.
+The following Score describes a door that can be opened with a key or kicked open with sufficient strength. It imports the `locked-transition` Pattern from the MAPS Library and adds an alternative Verb.
 
-**Guards in Practice**  
-Guards are evaluated at enablement time using current Marks. Supported operations include comparisons (`>=`, `==`, etc.), arithmetic, and logical connectors. This keeps the notation compact for gradients (health ranges, inventory counts) while preserving non-deterministic choice when multiple Verbs are enabled.
-
-Example minimal Score (YAML sketch) showing arc-level guards:
 ```yaml
 version: 1.0
 imports:
-  - maps:open-door@1.0
+  - maps:locked-transition@1.0
 
 states:
   - id: near_door
@@ -113,7 +97,8 @@ verbs:
     preconditions:
       - arc:
           source: near_door
-          # Simplified effect for demo
+          guard: inventory.keys >= 1
+          consume: { inventory.keys: 1 }
     effects:
       - arc:
           target: door_open
@@ -123,12 +108,14 @@ verbs:
       - arc:
           source: near_door
           guard: strength >= 5
-
-extends:  # Shorthand form (equivalent to adding a guarded precondition arc)
-  open-door:
-    add_verb: kick
-    precondition: strength >= 5
+    effects:
+      - arc:
+          target: door_open
 ```
+
+A reader can trace both paths: an agent at `near_door` with `inventory.keys >= 1` can fire `open_door`, consuming one key and transitioning to `door_open`. Alternatively, an agent with `strength >= 5` can fire `kick_door` without consuming a resource. Both Verbs lead to the same State, but through different mechanical constraints. The Score is complete enough to analyze for fairness, simulate for balance, or export to a RUNS Network for execution.
+
+**Guards in practice.** Guards are evaluated at enablement time using current Marks. Supported operations include comparisons (`>=`, `==`, etc.), arithmetic, and logical connectors. This keeps the notation compact for gradients (health ranges, inventory counts) while preserving non-deterministic choice when multiple Verbs are enabled.
 
 ## What the Notation Deliberately Excludes
 
@@ -140,25 +127,32 @@ extends:  # Shorthand form (equivalent to adding a guarded precondition arc)
 | Hidden implementation   | Notation must be complete and transparent    | Forbidden                            |
 | Platform specifics      | Keeps rules neutral                          | Runtime bindings                     |
 
-These exclusions ensure the notation remains a true abstract grammar rather than a biased framework.
+These exclusions follow the same discipline that governs TCP/IP (no opinion on content), SMTP (no opinion on rendering), and MIDI (no opinion on timbre). The notation remains a true abstract grammar rather than a biased framework.
 
 ## Integration with the Enduring Game Standard
 
-| Layer                   | Role                                         | Connection to MAPS Notation                  |
-|-------------------------|----------------------------------------------|---------------------------------------------|
-| **AEMS**                | Autonomous entities and assets               | Manifestations provide the "nouns" (e.g., keyed doors) |
-| **RUNS**                | Execution and data flow                      | Scores export to Networks of Records/Processors |
-| **WOCS**                | Coordination and ecosystem                   | Registry for Patterns/Scores, services for pairings |
-| **MAPS Notation**       | Notation for mechanics                       | The shared rulebook layer                    |
+MAPS Notation does not exist in isolation. It is one layer of a jointly necessary architecture.
 
-A Score becomes executable when paired with RUNS implementations of its Patterns.
+**MAPS → RUNS.** A Score becomes executable when its primitives map to RUNS components. States become Records. Verbs become Processors. Arcs become the wiring that connects them. The notation is the design-time blueprint; RUNS is the execution-time substrate. A designer writes a Score; a developer implements the corresponding Processors; the RUNS Network executes the result.
+
+**MAPS → AEMS.** AEMS entities carry the properties that MAPS Scores reference. A `maps:locked-transition` Pattern requires an entity with a `keys` property — that entity is defined in AEMS as a Manifestation. The notation describes the mechanical role; AEMS holds the concrete object.
+
+**MAPS → WOCS.** WOCS coordinates services around shared Patterns and Scores. A community Pattern registry, matchmaking for games described by a given Score, or coordinated playtesting across implementations — these are WOCS coordination tasks. The notation defines what the game *is*; WOCS enables the ecosystem around it.
+
+### Why Nostr
+
+Scores and Patterns are plain-text artifacts published as Nostr events. This is not a distribution convenience. Nostr provides the commons that makes cumulative craft possible.
+
+When a designer publishes a Pattern as a Nostr event, it becomes discoverable by any relay query, forkable by any other designer, and inheritable across generations without permission from any gatekeeper. A student can query a relay for every Pattern tagged `maps:locked-transition`, study the variants that other designers have published, and build on that accumulated work. When musical staff notation was confined to monastery scriptoria, composition accumulated slowly. When printing made scores widely available, the pace compounded. Nostr is the printing press for game notation: the transmission medium that turns individual Scores into a growing, searchable body of knowledge.
+
+This is what distinguishes MAPS from a file format specification. A JSON schema can describe mechanics. A Nostr event makes them part of a living commons.
 
 ## Summary
 
-MAPS Notation turns fleeting code into enduring rulebooks—open, composable, and preservable.
+MAPS Notation turns mechanics into open, composable artifacts — readable as text, analyzable by tools, preservable beyond any single engine or company. The four primitives (State, Verb, Arc, Mark) provide the minimal grammar. [Patterns](https://github.com/enduring-game-standard/ludic-notation-library) provide the shared vocabulary. Nostr provides the commons.
 
-Shared notation enables vast innovation.
+A teenager in Dortmund pulls the combat Patterns from a game whose studio dissolved three years ago, drops them into her own project, swaps the visual layer, and publishes a variant that a competitive community in São Paulo picks up for tournaments. No permission required. The mechanics survived because they were written in notation, not locked in a binary. That is what composable craft looks like.
 
-Small primitives enable rich conversations.
+Contribute a Pattern. Read a Score. Fork a mechanic.
 
 **MIT License** — Open for implementation, extension, critique.
