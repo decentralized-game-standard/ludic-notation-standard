@@ -1,6 +1,6 @@
 # MAPS Notation — Mechanics and Play Structures
 
-🏠 **[Overview](https://github.com/enduring-game-standard)** · 🔧 **[RUNS](https://github.com/enduring-game-standard/runs-standard)** · 📦 **[AEMS](https://github.com/enduring-game-standard/aems-standard)** · ⚡ **[WOCS](https://github.com/enduring-game-standard/wocs-standard)** · 🎼 **[MAPS Notation](https://github.com/enduring-game-standard/ludic-notation-standard)** · ❓ **[FAQ](https://github.com/enduring-game-standard/.github/blob/main/profile/FAQ.md)**
+🏠 **[Overview](https://github.com/enduring-game-standard)** · 🔧 **[RUNS](https://github.com/enduring-game-standard/runs-spec)** · 📦 **[AEMS](https://github.com/enduring-game-standard/aems-schema)** · ⚡ **[WOCS](https://github.com/enduring-game-standard/wocs-protocol)** · 🎼 **[MAPS Notation](https://github.com/enduring-game-standard/maps-notation)** · ❓ **[FAQ](https://github.com/enduring-game-standard/.github/blob/main/profile/FAQ.md)**
 
 > **Status**: Draft / RFC  
 > **Version**: 0.1.0
@@ -13,7 +13,7 @@ Music faced the same problem for centuries. Melodies passed from teacher to stud
 
 Games today fuse their mechanics into executable code — opaque, fragile, and locked to one implementation. When a studio closes, the rules themselves disappear with the codebase. Genres evolve through imitation rather than study, because there is no way to read a mechanic apart from its rendering. Each generation of designers starts nearly from scratch.
 
-The **MAPS Notation** provides a neutral, implementation-agnostic notation for describing game mechanics as open rulebooks. While [RUNS](https://github.com/enduring-game-standard/runs-standard) defines *how* a game executes each frame through data flow, and [AEMS](https://github.com/enduring-game-standard/aems-standard) defines *what* entities participate, MAPS defines the underlying *grammar*: the states, actions, transitions, and resources that shape play.
+The **MAPS Notation** provides a neutral, implementation-agnostic notation for describing game mechanics as open rulebooks. While [RUNS](https://github.com/enduring-game-standard/runs-spec) defines *how* a game executes each frame through data flow, and [AEMS](https://github.com/enduring-game-standard/aems-schema) defines *what* entities participate, MAPS defines the underlying *grammar*: the states, actions, transitions, and resources that shape play.
 
 Think of it as sheet music for gameplay: sufficient to convey the interactive structure clearly, leaving performance — execution, visuals, timing — to specialized interpreters.
 
@@ -71,7 +71,7 @@ MAPS Notation enforces a clean division:
 - **Content Instance** — Specific arrangement (e.g., a level layout placing Marks on States).
 - **Play State** — Runtime-only (current position) — excluded from notation.
 
-This separation prevents conflating rules with specific playthroughs. A Score describes a game's mechanics; a Content Instance describes a particular level or scenario; Play State belongs to the runtime. The notation captures the first two. The third is a matter for [RUNS](https://github.com/enduring-game-standard/runs-standard) execution.
+This separation prevents conflating rules with specific playthroughs. A Score describes a game's mechanics; a Content Instance describes a particular level or scenario; Play State belongs to the runtime. The notation captures the first two. The third is a matter for [RUNS](https://github.com/enduring-game-standard/runs-spec) execution.
 
 ## Concrete Example
 
